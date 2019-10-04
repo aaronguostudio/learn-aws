@@ -23,7 +23,7 @@
     - Workloads where data is infrequently accessed
     - 8GB - 1TB, 8 default
 
-# EBS exam
+# Exam tips
 - EBS should be in the same region as EC2
 - move to another zone
   - take snapshot
@@ -31,11 +31,12 @@
   - create an image
   - choose HVM virtualization
     - paravitual (PV)
-    - HVM supports more EC2 types
+    - HVM supports more EC2 types (recommanded)
   - click AMIs
-- Copy AMIs
-  - can copy one image to another region
+  - Copy AMIs
+    - can copy one image to another region
 - default additional volumnes will not be removed
+  - it seems that this is configurable
 - snapshots are on S3
 - snapshots are point to time copies of volumes
 - snapshots are incremental

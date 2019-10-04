@@ -6,14 +6,15 @@
 
 # Identity Access Management
 - IAM is universal. It does not apply to regions
-- Provides full access to AWS services and resources, but does not allow management of Users and groups.
-- IAM integrates with existing active directory account allowing single sign-on.
+- Power User
+  - Provides full access to AWS services and resources, but does not allow management of Users and groups
+- IAM integrates with existing active directory account allowing single sign-on
 - No biometric authentication
 
 # S3 Intro
 - Object-based
 - Files can be from 0 Bytes to 5TB
-- By default, you can create up to 100 buckets in each of your AWS accounts.
+- By default, you can create up to 100 buckets in each of your AWS accounts
 - How does data consistency work for S3 ?
   - Read after Write consistency for PUTS of new objects
   - Eventual Consistency for overwrite PUTS and DELETES
@@ -43,7 +44,7 @@
 
 # S3 charge
 - Storage
-- RequestsG
+- Requests
 - Storage Management Pricing
 - Data Transfer pricing
 - Transfer Acceleration
@@ -68,7 +69,7 @@
 - Versioning
   - If upload a new version, the object will not be public
   - Stores all write and delete
-  - Greate backup tool
+  - Great backup tool
   - Versioning can't be disabled, only suspended
   - Integrates with Lifecycle rules
 
@@ -109,7 +110,6 @@
     - Cached Volumes
       - only retain frequently accessed data locally
       - 1GB - 32TB in size for Cached Volumes
-  - Trying to use S3 without File Gateway in front would be a major impact to the user environment. Using File Gateway is the recommended way to use S3 with shared document pools. Life-cycle management and Infrequent Access storage is available for both S3 and EFS. A restriction however is that 'Using Amazon EFS with Microsoft Windows is not supported'. File Gateway does not support iSCSI in the client side. Further information:
   - Tape Gateway
 
 # Exam reviews
@@ -120,3 +120,4 @@
 - You are consulting to a mid-sized company with a predominantly Mac & Linux desktop environment. In passing they comment that they have over 30TB of unstructured Word and spreadsheet documents of which 85% of these documents don't get accessed again after about 35 days. They wish that they could find a quick and easy solution to have tiered storage to store these documents in a more cost-effective manner without impacting staff access. What options can you offer them? (Choose 2)
   - Migrate documents to File Gateway presented as NFS and make use of life-cycle using Infrequent Access storage.
   - Migrate documents to EFS storage and make use of life-cycle using Infrequent Access storage.
+- Trying to use S3 without File Gateway in front would be a major impact to the user environment. Using File Gateway is the recommended way to use S3 with shared document pools. Life-cycle management and Infrequent Access storage is available for both S3 and EFS. A restriction however is that 'Using Amazon EFS with Microsoft Windows is not supported'. File Gateway does not support iSCSI in the client side

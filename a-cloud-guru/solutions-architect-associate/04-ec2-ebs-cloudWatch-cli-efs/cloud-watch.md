@@ -29,7 +29,7 @@
   - CloudTrail is all about auditing
 
 # Add CloudWatch
-- craete alarms
+- create alarms
 - select metrics
 - create the topic and add subscriber
 - run this in the ec2 terminal to below up the CPU: while true; do echo; done

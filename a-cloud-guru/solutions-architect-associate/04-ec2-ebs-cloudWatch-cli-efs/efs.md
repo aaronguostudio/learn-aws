@@ -8,10 +8,10 @@ chkconfig httpd on
 yum install -y amazon-efs-utils
 ```
 
-- add NFS rule and the security group
+- add NFS role and the security group
 - ssh into the two instances
   - cd /var/www
-  - mount -t efs -o tls fs-c45db045:/ /var/www/html
+  - mount -t efs -o tls fs-c45db045:/ /var/www/html (this information can get from the console popup)
 - now they are using the save efs
 
 
