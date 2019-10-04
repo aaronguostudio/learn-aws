@@ -100,6 +100,7 @@
 - It is a physical or virtual appliance that can be used to cache S3 locally at a customer's site.
 - Three different types of Storage
   - File Gateway (NFS & SMB)
+    - Enables to store and retrieve objects in S3 using file protocol
   - Volume Gateway (iSCSI)
     - Stored Volumes
       - store data locally, asynchronously backing up the data to AWS
@@ -108,10 +109,14 @@
     - Cached Volumes
       - only retain frequently accessed data locally
       - 1GB - 32TB in size for Cached Volumes
+  - Trying to use S3 without File Gateway in front would be a major impact to the user environment. Using File Gateway is the recommended way to use S3 with shared document pools. Life-cycle management and Infrequent Access storage is available for both S3 and EFS. A restriction however is that 'Using Amazon EFS with Microsoft Windows is not supported'. File Gateway does not support iSCSI in the client side. Further information:
   - Tape Gateway
 
-# Some questions
+# Exam reviews
 - Using SAML (Security Assertion Markup Language 2.0), you can give your federated users single sign-on (SSO) access to the AWS Management Console.
   - True
 - You run a popular photo-sharing website that depends on S3 to store content. Paid advertising is your primary source of revenue. However, you have discovered that other websites are linking directly to the images in your buckets, not to the HTML pages that serve the content. This means that people are not seeing the paid advertising, and you are paying AWS unnecessarily to serve content directly from S3. How might you resolve this issue?
   - Remove the ability for images to be served publicly to the site and then use signed URLs with expiry dates.
+- You are consulting to a mid-sized company with a predominantly Mac & Linux desktop environment. In passing they comment that they have over 30TB of unstructured Word and spreadsheet documents of which 85% of these documents don't get accessed again after about 35 days. They wish that they could find a quick and easy solution to have tiered storage to store these documents in a more cost-effective manner without impacting staff access. What options can you offer them? (Choose 2)
+  - Migrate documents to File Gateway presented as NFS and make use of life-cycle using Infrequent Access storage.
+  - Migrate documents to EFS storage and make use of life-cycle using Infrequent Access storage.

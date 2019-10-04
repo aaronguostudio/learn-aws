@@ -1,0 +1,51 @@
+
+# EBS
+- Types
+  - General Purpose (SSD)
+    - most work loads
+    - api: gp2
+    - 1GB - 16TB
+    - IOPS 16000
+  - Provisioned IOPS (SSD)
+    - databases, very fast
+    - api: io1
+    - 4GB - 16TB
+    - - IOPS 64000
+  - Throughout Optimised Hard Disk Drive (HDD)
+    - Big data and data warehouses
+    - 500GB - 16TB
+    - IOPS 500
+  - Cold Hard Disk Drive
+    - File Servers
+    - 500GB - 16TB
+    - IOPS 250, 500 default
+  - Magnetic
+    - Workloads where data is infrequently accessed
+    - 8GB - 1TB, 8 default
+
+# EBS exam
+- EBS should be in the same region as EC2
+- move to another zone
+  - take snapshot
+  - in the snap page
+  - create an image
+  - choose HVM virtualization
+    - paravitual (PV)
+    - HVM supports more EC2 types
+  - click AMIs
+- Copy AMIs
+  - can copy one image to another region
+- default additional volumnes will not be removed
+- snapshots are on S3
+- snapshots are point to time copies of volumes
+- snapshots are incremental
+
+# Encrypted Root Volume
+- before, it's not possible encrypt root volumne on creation, now it could
+- if not encrypte when create, can encrypte it after creation
+  - create a snapshot for the volume
+  - create a copy of the new snapshot and encrpte it
+  - create an image of the new copied snapshot
+  - then launch another ec2 using the new encrypted image
+- Can share snapshots only there are unencrypted
+- snapshots can be public or share to other accounts
