@@ -73,6 +73,7 @@
   - add script
 
 ```bash
+#!/bin/bash
 yum install httpd php php-mysql -y
 cd /var/www/html
 wget https://wordpress.org/wordpress-5.0.tar.gz

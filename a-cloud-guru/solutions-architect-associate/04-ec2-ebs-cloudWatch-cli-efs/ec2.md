@@ -83,3 +83,4 @@
   - Ensure that your EC2 instances are types that can be optimized for use with EBS
 - Amazon's EBS volumes are ________.
     - block based storage (not object)
+- Stop and start a EC2 may cause IP chanage
