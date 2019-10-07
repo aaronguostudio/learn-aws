@@ -1,0 +1,111 @@
+# VPC
+- private addresses
+  - 10.0.0.0 - 10.255.255.255 (10/8 prefix)
+  - 172.16.0.0 - 172.31.255.255 (172. 16/12 prefix)
+  - 192.168.0.0 - 192.168.255.255 (192.168/16 prefix)
+  - CIDR (Classless Inter-Domain Routing)
+    - refer to http://cidr.xyz/
+  - netmask /28 is the minumum in AWS
+
+- VPC Peering
+  - allows you to connect one VPC with another via a direct network route using private IP addresses
+  - Instances behave as if they were on the same private network
+  - can peer VPC's with other AWS accounts as well as the other VPCs in the same account
+  - Peering is in a star configuration: ie. 1 central VPC peers with 4 others. No transitive peering!!!
+  - Can peer between regions
+
+# Create a VPC
+- pricing about VPC
+  - From https://aws.amazon.com/blogs/aws/new-managed-nat-network-address-translation-gateway-for-aws/
+- create a new VPC
+  - CIDR: 10.0.0.0/16
+  - creating a VPC will not add subnet automatical
+  - will add a new route tables
+  - will add a new ACL
+  - will add a Security Group
+- create a subnet
+  - select an AZ e.g. us-east-1a
+  - assign a CIDR block
+    - 10.0.1.0/24
+  - create another subnet
+    - select an AZ e.g. us-east-1b
+  - After creating, will see 251 available IP, becasue AWS reserved 5 IPs
+    - 10.0.0.0 - 10.0.0.3
+    - 10.0.0.255
+  - make one public accessible
+- config Internet Gateway
+  - create a internet gateway
+  - attach it to the VPC (one Internet Gateway can only attach to one VPC)
+- config route table
+  - create a route table
+  - edit routes
+    - create a public routes
+      - 0.0.0.0/0
+      - target, select a Internet Gateway
+      - add subnet associations
+  - the public one should have a public IP and should be able to ssh into it
+- create 2 EC2
+  - create the public one
+    - select the new VPC and the public subnet
+  - create another private one
+- now, my public server can still not ssh into my private one, becasue their security groups are not allowed ssh yet
+  - create a new security group to allow 10.0.1.0/24
+    - All ICMP
+    - HTTP
+    - HTTPS
+    - SSH
+    - MySQL/Aurora
+  - update the new security group to the private EC2
+  - new it should be able to ping to the private EC2 from the public one
+  - add pem and chomod and ssh to the private EC2
+  - now the private EC2 can't do yum update -y because it's totally separate from the internet
+- NAT Instance and NAT Gateway
+  - create an instance, go to community AMIs
+    - search NAT and select the first one
+    - select the new VPC and the public subnet
+      - About NAT and AWS config: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html
+      - Disable source/destination check (NAT must have the use other sources, which will not pass the check, chech the link above)
+  - add the NAV instance to route table
+    - edit routes
+      - 0.0.0.0/0
+      - target: i-xxx new nat instance
+  - now login from the public EC2
+    - sudo su
+    - ssh ec2-user@private-ec2 -i xx.pem
+    - sudo update -y (couldn't install in my lab)
+  - This way is not scalable, because the NAT server is easy to become to the bottle nack
+    - This way: Nat instance is totally out-dated, but still may exist in the exam
+  - now, create a NAT Gateway
+    - select the public subnet
+    - add a new elastic IP
+  - Edit route table, select the main one
+    - 0.0.0.0/0
+    - target: nat-xxx the new NAT gateway
+  - now it should be able to do yum update (it works in my lab)
+  -
+# Exam Tips
+- Think a VPC as a logical datacenter in AWS
+- Consists of IGWs (Or Virtual Private Gateways), Route Tables, Network Access Control Lists, Subnets and Security Groups
+- 1 Subnet = 1 AZ
+  - 1 Subnet will not stretch to other AZ
+  - can have multiple subnets in the same AZ
+- Security Groups are stateful, NCL (Network Access Control Lists) are Stateless
+- No transitive peering
+- For NAT instance
+  - must disable source/destination check
+  - NAT instance must be in the public subnet
+  - must have a route out of the private subnet to the NAT instance
+  - will be the bottlenecking
+- For Nat Gateways
+  - redundant inside the AZ
+  - enterprise
+  - scale automatically
+    - starts at 5 Gbps to currently 450 Gbps
+  - no need to patch
+  - not associated with security groups
+  - need to update the route tables
+  - no need to disable source/destination check
+  - should create each NAT Gateway in each AZ for the resources in that AZ
+
+
+<!-- https://acloud.guru/course/aws-certified-solutions-architect-associate/learn/vpc/acl/watch?backUrl=~2Fcourses -->

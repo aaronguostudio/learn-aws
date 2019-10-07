@@ -84,3 +84,4 @@
 - Amazon's EBS volumes are ________.
     - block based storage (not object)
 - Stop and start a EC2 may cause IP chanage
+- Each EC2 instance has both a public and private IP address
