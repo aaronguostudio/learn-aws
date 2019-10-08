@@ -1,4 +1,8 @@
 # VPC
+- VPCs per Region
+  - 5
+  - Subnets per VPC
+    - 200
 - private addresses
   - 10.0.0.0 - 10.255.255.255 (10/8 prefix)
   - 172.16.0.0 - 172.31.255.255 (172. 16/12 prefix)
@@ -110,9 +114,9 @@
 - a flow log is a feature that capture information about the IP traffic going to and from network interfaces in VPC
 - flow log data is stored using CloudWatch / S3
 - 3 levels
+  - Network Interface Level
   - VPC
   - Subnet
-  - Network Interface Level
 - create a flow group
   - select the custom VPC and create flow log
   - inorder to add to CloudWatch, need to create a log group
@@ -203,3 +207,29 @@
       - s3
       - dynamodb
   - not leave AWS network
+- An egress-only Internet gateway is a horizontally scaled, redundant, and highly available VPC component that allows outbound communication over IPv6 from instances in your VPC to the Internet, and prevents the Internet from initiating an IPv6 connection with your instances.
+  - An egress-only Internet gateway is for use with IPv6 traffic only. To enable outbound-only Internet communication over IPv4, use a NAT gateway instead.
+
+# Exam Review
+- What is the purpose of an Egress-Only Internet Gateway?
+  - Prevents IPv6 based Internet resources initiating a connection into a VPC
+  - Allows VPC based IPv6 traffic to communicate to the Internet
+
+- Which of the following are true for Security Groups? (Choose 3)
+  - Security Groups evaluate all rules before deciding whether to allow traffic.
+  - ecurity Groups operate at the instance level.
+  - Security Groups support "allow" rules only.
+    - Not in number order decision (it's ACL)
+
+- A VPN connection consists of which of the following components? (Choose 2)
+  - Virtual Private Gateway
+  - Customer Gateway
+
+- When I create a new security group, all outbound traffic is allowed by default.
+  - True
+
+- By default, instances in new subnets in a custom VPC can communicate with each other across Availability Zones.
+  - True
+
+- Are you permitted to conduct your own vulnerability scans on your own VPC without alerting AWS first?
+  - Depends on the type of scan and the service being scanned. Some scans can be performed without alerting AWS, some require you to alert.
