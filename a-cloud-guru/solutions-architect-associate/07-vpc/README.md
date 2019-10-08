@@ -29,10 +29,12 @@
     - 10.0.1.0/24
   - create another subnet
     - select an AZ e.g. us-east-1b
+    - 10.0.2.0/24
   - After creating, will see 251 available IP, becasue AWS reserved 5 IPs
     - 10.0.0.0 - 10.0.0.3
     - 10.0.0.255
   - make one public accessible
+    - modify auto-assign IP settings to enable auto-assign
 - config Internet Gateway
   - create a internet gateway
   - attach it to the VPC (one Internet Gateway can only attach to one VPC)
@@ -82,30 +84,122 @@
     - 0.0.0.0/0
     - target: nat-xxx the new NAT gateway
   - now it should be able to do yum update (it works in my lab)
-  -
+
+# Network Access Control List
+- create a new ACL
+  - a new ACL will default deny everything
+    - the vpc has a default ACL, the default ACL has public access
+  - add sub association to the public subnet, the IP should not be accessable now
+    - this change will also table the public subnet out of the default ACL
+    - one ACL can associate to multiple subnets, one subnet can only associate to one ACL
+  - now add three rules to the ACL
+    - inbound 80. 443, 22
+    - outbound 80, 443, 1024-65535 (Ephemeral prot)
+  - now the IP should be accessable
+  - if add a deny rule for my current IP (this must before the 0.0.0.0/0 rule), my IP should be deny access
+  - request will hit ACL first and then hit to the security group
+  - ACL is stateless
+
+# Custom VPCs and ELBs
+- create an application load balancer (HTTP)
+  - select the VPC
+  - select a public subnet
+    - will throw an error at least two subnet is required
+
+# VPC Flow logs
+- a flow log is a feature that capture information about the IP traffic going to and from network interfaces in VPC
+- flow log data is stored using CloudWatch / S3
+- 3 levels
+  - VPC
+  - Subnet
+  - Network Interface Level
+- create a flow group
+  - select the custom VPC and create flow log
+  - inorder to add to CloudWatch, need to create a log group
+  - create a flowlogsRole for the IAM
+
+# a bastion host
+- similar to Jump Boxes
+- A NAT Gateway or NAT Instance is used to provide internet traffic to EC2 instances in a private subnets
+- A bastion is used to securely admin EC2 instances (Using SSH or RDP)
+- Can't use NAT Gateway as a Bastion host
+
+# Direct Connect
+- ![Direct connect](direct-connect.png)
+- connect my data center to AWS
+- useful for high throughput workloads (ie lots of network traffic)
+  useful if need a stable and reliable secure connection
+
+# VPC Endpoint
+- types
+  - interface endpoints
+    - point to services, for examples:
+      - API Gateway
+      - CloudFormation
+      - CloudWatch
+      - SNS
+      - SQS
+      - ...
+  - gateway endpoints
+    - S3
+    - DynamoDB
+- create a gateway endpoint
+  - create a role for ec2 to access s3
+  - add the role to the private ec2 which using the private subnet
+  - now ssh to the public ec2 (can change the public subnet back to the default ACL for this VPC)
+  - we can remove the NAT Gateway then the private ec2 can not talk to the internet
+  - now create  endpoint and select us-east-1.s3
+    - select the private vpc
+    - select the main subnet
+    - full access
+  - now the private ec2 can do aws s3 ls
+- Endpoints are virtual devices. They are horizontally scaled, redundant and highly available
+- No need NAT, VPN or AWS Direct Connect connection
+
 # Exam Tips
+- high level overview
+  - - ![Direct connect](vpc.png)
 - Think a VPC as a logical datacenter in AWS
 - Consists of IGWs (Or Virtual Private Gateways), Route Tables, Network Access Control Lists, Subnets and Security Groups
 - 1 Subnet = 1 AZ
   - 1 Subnet will not stretch to other AZ
   - can have multiple subnets in the same AZ
-- Security Groups are stateful, NCL (Network Access Control Lists) are Stateless
+- Security Groups are stateful, ACL (Network Access Control Lists) are Stateless
 - No transitive peering
 - For NAT instance
   - must disable source/destination check
   - NAT instance must be in the public subnet
   - must have a route out of the private subnet to the NAT instance
   - will be the bottlenecking
+  - NAT instance is behind the security group
 - For Nat Gateways
   - redundant inside the AZ
   - enterprise
   - scale automatically
     - starts at 5 Gbps to currently 450 Gbps
+  - shoule associate to a public subnet
   - no need to patch
   - not associated with security groups
   - need to update the route tables
   - no need to disable source/destination check
   - should create each NAT Gateway in each AZ for the resources in that AZ
-
-
-<!-- https://acloud.guru/course/aws-certified-solutions-architect-associate/learn/vpc/acl/watch?backUrl=~2Fcourses -->
+- ELB
+  - need minimum of two public subnets to deploy an internet facing load balancer
+- VPC flow logs
+  - cannot tag a flow log
+  - cannot enable flow logs for VPCs that peered with your VPC unless the peer VPC is in your account
+  - After create a flow log, cannot change its configuration
+  - not all IP traffic is monitored
+    - no: traffic generated by instances when they conntact the Amazon DNS server
+      - if you use your own DNS server, then all traffic to that DNS server is logged
+    - no: traffic generated by a Windows instance for Amazon Windows license activation
+    - no: traffic to and from 169.254.169.254
+    - no: DHCP traffic
+    - no: traffic to a reserved IP address for the default VPC router
+- Endpoints
+  - types
+    - interface
+    - gateway
+      - s3
+      - dynamodb
+  - not leave AWS network
