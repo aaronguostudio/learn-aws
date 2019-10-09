@@ -45,6 +45,7 @@
 - spread placement group
   - distinct AZ in the same region
   - protecion failure
+  - A spread placement group is a group of instances that are each placed on distinct underlying hardware
 - partitioned
   - distinct AZ in the same region
   - isolate hardware failure

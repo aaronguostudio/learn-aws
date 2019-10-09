@@ -1,6 +1,7 @@
 # Databases
 
 ## RDS
+
 - types
   - Aurora
   - MySQL
@@ -35,26 +36,31 @@
   - Auroa serverless is serverless
 
 ## RDS has two key features
+
 - Multi-AZ - for disaster recovery
 - Read Replicas - for performance
   - scale out to the replicas
 
 ## OLTP vs OLAP
+
 - OLTP - online transaction processing
   - e.g. find an order, pull up a row of data
 - OLAP - online analytics processing
   - a bunch of related rows
 
 ## AWS redshift warehouse (OLAP)
+
 - can asynchronously relicate snaphots to S3 in another reigon for disaster recovery
 
 ## ElasticCache
+
 - in-memory cache
 - engines
   - Memcached
   - Redis
 
 ## Backups
+
 - automatic and snapshots
   - automatic
     - backup include all logs
@@ -66,7 +72,8 @@
 - restore
   - whenerver restore either automatic backup or manual snapshot, restored version will be a new RDS instance with a new DNS endpoint
 
-# Create a DB and wordpress
+## Create a DB and wordpress
+
 - create a MySQL server
   - config user password and db...
 - create a EC2 for wordpress
@@ -86,21 +93,24 @@ chown -R apache:apache wp-content
 chkconfig httpd on
 service httpd start
 ```
+
 - config security group
 - add ec2 security group to rds security group
 
-# AZ and Read Replica
+## AZ and Read Replica
+
 - turn on multi-AZ deployment
   - after this change, if do a rebott, there will have a checkbox for reboot with failover (will switch the availability zone)
 - If trun on read replica, will need to turn on backup
   - turn on backup will experience some down time
   - then can create read replica
 
+## Exam tips
 
-# Exam tips
 - automated backups and snapshot
 
-# Exam reviews
+## Exam reviews
+
 - Under what circumstances would I choose provisioned IOPS over standard storage when creating an RDS instance?
   - If you use online transaction processing in your production environment.
 - When you add a rule to an RDS DB security group, you must specify a port number or protocol.

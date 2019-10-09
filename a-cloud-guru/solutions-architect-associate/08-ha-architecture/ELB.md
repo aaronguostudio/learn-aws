@@ -1,4 +1,7 @@
 # Elastic Load Balancer
+
+## Load Balancer
+
 - types
   - Application Load Balancer
     - best suit for HTTP and HTTPS
@@ -31,7 +34,8 @@
     - go to target gourps add 2 ec2s as registered
     - if I go to the load balancer and the lister page, I will see more configurations there, that's why it's smarter
 
-# Advanced topics
+## Advanced topics
+
 - sticky sessions
   - Classic load balancer routes each request independently to the registered EC2 instance
   - Sticky sessions allow to bind a user's session to a specific EC2 instance
@@ -46,4 +50,20 @@
   - forward requests based on the URL path (path-based routing)
   - ![Path based routing](path-based-routing.png)
 
-<!-- https://acloud.guru/course/aws-certified-solutions-architect-associate/learn/ha-architecture/asg-lab/watch?backUrl=~2Fcourses -->
+## Auto Scaling
+
+- launch configuration
+  - add bootstrap script and security group
+  - select use scaling policy
+  - select 3 instance and scale to 6
+  - terminate 2 instances
+  - after sometime, I can see new two instances are auto create
+
+## HA Design Priciples
+
+- plan for failure
+- requires a minimum of 6 instances and it must be highly available
+- must be able to tolerate the failure of 1 AZ
+- What is the ideal architecture for this environment while also being the most cost effective?
+  - 3 AZs with 3 instances in each AZ
+    - If lost one, at least still have 6 instances
