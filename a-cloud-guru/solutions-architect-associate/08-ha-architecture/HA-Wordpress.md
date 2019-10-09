@@ -151,6 +151,7 @@ aws s3 sync --delete s3://YOUR_S3_BUCKET_NAME /var/www/html
   - 99.999999999 percent
 - Placement Groups can either be of the type 'Cluster', 'Spread', or 'Partition'. Choose options from below which are only specific to Spread Placement Groups.
   - A spread placement group is a group of instances that are each placed on distinct underlying hardware
+  - can only have 7 running instancers per AZ
 - You work for a major news network in Europe. They have just released a new mobile app that allows users to post their photos of newsworthy events in real-time. Your organization expects this app to grow very quickly, essentially doubling its user base each month. The app uses S3 to store the images, and you are expecting sudden and sizable increases in traffic to S3 when a major news event takes place (as users will be uploading large amounts of content.) You need to keep your storage costs to a minimum, and you are happy to temporally lose access to up to 0.1% of uploads per year. With these factors in mind, which storage media should you use to keep costs as low as possible?
   - S3 Standard-IA
     - not S3 - OneZone-Infrequent Access
