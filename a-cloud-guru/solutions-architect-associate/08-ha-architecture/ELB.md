@@ -52,6 +52,8 @@
 
 ## Auto Scaling
 
+- Using Auto Scaling Group based on schedule
+  - in response to predictable load changes
 - launch configuration
   - add bootstrap script and security group
   - select use scaling policy
