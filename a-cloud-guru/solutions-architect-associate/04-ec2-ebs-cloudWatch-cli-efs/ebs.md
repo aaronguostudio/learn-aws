@@ -22,6 +22,8 @@
   - Magnetic
     - Workloads where data is infrequently accessed
     - 8GB - 1TB, 8 default
+- AMI
+  - In this scenario, the EC2 instances you are currently using depends on a pre-built AMI. This AMI is not accessible to another region hence,  you have to copy it to the us-west-2 region to properly establish your disaster recovery instance.
 
 ## Exam tips
 

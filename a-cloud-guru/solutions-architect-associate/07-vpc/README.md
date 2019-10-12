@@ -9,7 +9,7 @@
   - 172.16.0.0 - 172.31.255.255 (172. 16/12 prefix)
   - 192.168.0.0 - 192.168.255.255 (192.168/16 prefix)
   - CIDR (Classless Inter-Domain Routing)
-    - refer to http://cidr.xyz/
+    - refer to [here](http://cidr.xyz/)
   - netmask /28 is the minumum in AWS
 
 - VPC Peering
@@ -22,7 +22,7 @@
 ## Create a VPC
 
 - pricing about VPC
-  - From https://aws.amazon.com/blogs/aws/new-managed-nat-network-address-translation-gateway-for-aws/
+  - From [here](https://aws.amazon.com/blogs/aws/new-managed-nat-network-address-translation-gateway-for-aws/)
 - create a new VPC
   - CIDR: 10.0.0.0/16
   - creating a VPC will not add subnet automatical
@@ -71,7 +71,7 @@
   - create an instance, go to community AMIs
     - search NAT and select the first one
     - select the new VPC and the public subnet
-      - About NAT and AWS config: https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html
+      - [About NAT and AWS config](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_NAT_Instance.html)
       - Disable source/destination check (NAT must have the use other sources, which will not pass the check, chech the link above)
   - add the NAV instance to route table
     - edit routes
