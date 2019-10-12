@@ -1,6 +1,8 @@
 # Elastic File System
+
 - create two ec2 and add scripts
-```
+
+```bash
 yum update -y
 yum install httpd -y
 service httpd start
@@ -14,8 +16,8 @@ yum install -y amazon-efs-utils
   - mount -t efs -o tls fs-c45db045:/ /var/www/html (this information can get from the console popup)
 - now they are using the save efs
 
+## Exam Tips
 
-# Exam Tips
 - support NFS v4 protocol
 - only pay the storage you use (no pre-provisioning required)
 - can scale up to the petabytes

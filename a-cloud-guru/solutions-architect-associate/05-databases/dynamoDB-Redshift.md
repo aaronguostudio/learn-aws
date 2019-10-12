@@ -1,4 +1,7 @@
-# DynamoDB
+# DynamoDB and Redshift
+
+## Redis实战
+
 - stored on SSD
 - across 3 geographically distinct data centres
 - consistency
@@ -6,7 +9,8 @@
     - better performance
   - Stronly consistent reads
 
-# Redshift
+## Redshift
+
 - config
   - single node (160GB)
   - Multi-Node

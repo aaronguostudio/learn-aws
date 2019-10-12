@@ -1,17 +1,20 @@
 # Concepts
+
 - Users
 - Groups
 - Policies
 - Roles
 
-# Identity Access Management
+## Identity Access Management
+
 - IAM is universal. It does not apply to regions
 - Power User
   - Provides full access to AWS services and resources, but does not allow management of Users and groups
 - IAM integrates with existing active directory account allowing single sign-on
 - No biometric authentication
 
-# S3 Intro
+## S3 Intro
+
 - Object-based
 - Files can be from 0 Bytes to 5TB
 - By default, you can create up to 100 buckets in each of your AWS accounts
@@ -31,7 +34,8 @@
 - For data larger than 5GB
   - Design your application to use the Multipart Upload API for all objects.
 
-# S3 Bucket Types
+## S3 Bucket Types
+
 - S3 Standard
 - S3 Intelligent Tiering
 - S3 Standard-IA
@@ -42,7 +46,8 @@
 - S3 Glacier Deep Archive
   - within 48 hours
 
-# S3 charge
+## S3 charge
+
 - Storage
 - Requests
 - Storage Management Pricing
@@ -54,7 +59,8 @@
   - Until 2018 there was a hard limit on S3 puts of 100 PUTs per second. To achieve this care needed to be taken with the structure of the name Key to ensure parallel processing. As of July 2018 the limit was raised to 3500 and the need for the Key design was basically eliminated. Disk IOPS is not the issue with the problem. The account limit is not the issue with the problem. Further information:
   - Refter to [this](https://docs.aws.amazon.com/AmazonS3/latest/dev/optimizing-performance.html)
 
-# Encryption
+## Encryption
+
 - Encryption In Transit is achieved by SSL/TLS
 - Encryption At Rest (Server Side) is achieved by ( 服务端存储 )
   - S3 Managed Keys - SSE - S3
@@ -62,7 +68,8 @@
   - Server Side Encryption with customer provided keys - SSE - C
 - Client Side Encryption
 
-# Versioning
+## Versioning
+
 - Once enabled, Versioning connot be disabled
 - Integrated with Lifecycle rules
 - Versioning's MFA Delete capability
@@ -73,7 +80,8 @@
   - Versioning can't be disabled, only suspended
   - Integrates with Lifecycle rules
 
-# Lifecycle
+## Lifecycle
+
 - Automates moving objects between storage tiers
 - Can be used in conjunction with versioning
 - Can be applied to current and previous versions
@@ -82,7 +90,8 @@
 - Regions must be unique
 - Fiels in an existing bucket are not reqlicated automaticlly (history data)
 
-# CloudFront
+## CloudFront
+
 - Edge Location
   - the location to cache the content and are separated to AWS region/AZ
   - Edge locations are not just READ only, can wirte/put an object on them
@@ -94,10 +103,12 @@
   - CloudFront Origin Access Identity
 - Origin - This can be either an S3 Bucket, an EC2 Instance, and Elastic Load Balancer or Route53
 
-# Snowball
+## Snowball
+
 - Snowball can import to S3 and export from S3
 
-# Storage Gateway
+## Storage Gateway
+
 - It is a physical or virtual appliance that can be used to cache S3 locally at a customer's site.
 - Three different types of Storage
   - File Gateway (NFS & SMB)
@@ -112,7 +123,8 @@
       - 1GB - 32TB in size for Cached Volumes
   - Tape Gateway
 
-# Exam reviews
+## Exam reviews
+
 - Using SAML (Security Assertion Markup Language 2.0), you can give your federated users single sign-on (SSO) access to the AWS Management Console.
   - True
 - You run a popular photo-sharing website that depends on S3 to store content. Paid advertising is your primary source of revenue. However, you have discovered that other websites are linking directly to the images in your buckets, not to the HTML pages that serve the content. This means that people are not seeing the paid advertising, and you are paying AWS unnecessarily to serve content directly from S3. How might you resolve this issue?

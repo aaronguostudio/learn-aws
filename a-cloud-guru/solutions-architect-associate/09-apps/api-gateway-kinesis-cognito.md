@@ -1,6 +1,7 @@
 # API Gateway
 
-# Kinesis
+## Kinesis
+
 - Streaming data is data that is generated continuously by thousands of dta sources in small sized (order of kilobytes)
 - types
   - Kinesis streams
@@ -14,7 +15,8 @@
   - Kinesis Analytics
     - Analysis the data and store somewhere
 
-# Cognito
+## Cognito
+
 - Identity Pool
   - user pool -> login to facebook or google -> JWT -> Identity Pool -> AWS Credentials
   - has slient notifications if the user identity information has been changed

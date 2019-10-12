@@ -1,4 +1,5 @@
 # VPC
+
 - VPCs per Region
   - 5
   - Subnets per VPC
@@ -18,7 +19,8 @@
   - Peering is in a star configuration: ie. 1 central VPC peers with 4 others. No transitive peering!!!
   - Can peer between regions
 
-# Create a VPC
+## Create a VPC
+
 - pricing about VPC
   - From https://aws.amazon.com/blogs/aws/new-managed-nat-network-address-translation-gateway-for-aws/
 - create a new VPC
@@ -89,7 +91,8 @@
     - target: nat-xxx the new NAT gateway
   - now it should be able to do yum update (it works in my lab)
 
-# Network Access Control List
+## Network Access Control List
+
 - create a new ACL
   - a new ACL will default deny everything
     - the vpc has a default ACL, the default ACL has public access
@@ -104,13 +107,15 @@
   - request will hit ACL first and then hit to the security group
   - ACL is stateless
 
-# Custom VPCs and ELBs
+## Custom VPCs and ELBs
+
 - create an application load balancer (HTTP)
   - select the VPC
   - select a public subnet
     - will throw an error at least two subnet is required
 
-# VPC Flow logs
+## VPC Flow logs
+
 - a flow log is a feature that capture information about the IP traffic going to and from network interfaces in VPC
 - flow log data is stored using CloudWatch / S3
 - 3 levels
@@ -122,19 +127,22 @@
   - inorder to add to CloudWatch, need to create a log group
   - create a flowlogsRole for the IAM
 
-# a bastion host
+## a bastion host
+
 - similar to Jump Boxes
 - A NAT Gateway or NAT Instance is used to provide internet traffic to EC2 instances in a private subnets
 - A bastion is used to securely admin EC2 instances (Using SSH or RDP)
 - Can't use NAT Gateway as a Bastion host
 
-# Direct Connect
+## Direct Connect
+
 - ![Direct connect](direct-connect.png)
 - connect my data center to AWS
 - useful for high throughput workloads (ie lots of network traffic)
   useful if need a stable and reliable secure connection
 
-# VPC Endpoint
+## VPC Endpoint
+
 - types
   - interface endpoints
     - point to services, for examples:
@@ -160,9 +168,10 @@
 - Endpoints are virtual devices. They are horizontally scaled, redundant and highly available
 - No need NAT, VPN or AWS Direct Connect connection
 
-# Exam Tips
+## Exam Tips
+
 - high level overview
-  - - ![Direct connect](vpc.png)
+  - ![Direct connect](vpc.png)
 - Think a VPC as a logical datacenter in AWS
 - Consists of IGWs (Or Virtual Private Gateways), Route Tables, Network Access Control Lists, Subnets and Security Groups
 - 1 Subnet = 1 AZ
@@ -210,7 +219,8 @@
 - An egress-only Internet gateway is a horizontally scaled, redundant, and highly available VPC component that allows outbound communication over IPv6 from instances in your VPC to the Internet, and prevents the Internet from initiating an IPv6 connection with your instances.
   - An egress-only Internet gateway is for use with IPv6 traffic only. To enable outbound-only Internet communication over IPv4, use a NAT gateway instead.
 
-# Exam Review
+## Exam Review
+
 - What is the purpose of an Egress-Only Internet Gateway?
   - Prevents IPv6 based Internet resources initiating a connection into a VPC
   - Allows VPC based IPv6 traffic to communicate to the Internet

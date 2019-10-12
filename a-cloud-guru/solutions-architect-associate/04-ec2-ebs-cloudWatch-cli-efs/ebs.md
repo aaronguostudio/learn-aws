@@ -1,5 +1,5 @@
-
 # EBS
+
 - Types
   - General Purpose (SSD)
     - most work loads
@@ -10,7 +10,7 @@
     - databases, very fast
     - api: io1
     - 4GB - 16TB
-    - - IOPS 64000
+    - IOPS 64000
   - Throughout Optimised Hard Disk Drive (HDD)
     - Big data and data warehouses
     - 500GB - 16TB
@@ -23,7 +23,8 @@
     - Workloads where data is infrequently accessed
     - 8GB - 1TB, 8 default
 
-# Exam tips
+## Exam tips
+
 - EBS should be in the same region as EC2
 - move to another zone
   - take snapshot
@@ -41,7 +42,8 @@
 - snapshots are point to time copies of volumes
 - snapshots are incremental
 
-# Encrypted Root Volume
+## Encrypted Root Volume
+
 - before, it's not possible encrypt root volumne on creation, now it could
 - if not encrypte when create, can encrypte it after creation
   - create a snapshot for the volume

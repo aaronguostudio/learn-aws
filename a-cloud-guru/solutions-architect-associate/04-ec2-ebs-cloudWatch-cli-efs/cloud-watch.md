@@ -1,4 +1,5 @@
 # CloudWatch can monitor
+
 - Can monitor
   - Compute
     - EC2
@@ -28,7 +29,8 @@
     - Can identify which user do what
   - CloudTrail is all about auditing
 
-# Add CloudWatch
+## Add CloudWatch
+
 - create alarms
 - select metrics
 - create the topic and add subscriber

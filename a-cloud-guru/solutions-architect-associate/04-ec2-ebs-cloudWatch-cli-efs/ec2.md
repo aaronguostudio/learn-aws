@@ -1,4 +1,5 @@
 # EC2 Pricing Models
+
 - On demand
 - Reserved
   - Standard Reserved intances
@@ -12,7 +13,8 @@
 - Spot
 - Dedicated Hosts
 
-# Connect to EC2
+## Connect to EC2
+
 - chmod 400 thekey.pem
 - ssh ec2-user@ip -i thekey.pem
 - A chrome extension Secure Shell App is handy for ssh to server from browser
@@ -23,7 +25,8 @@
 - service httpd start
 - chkconfig on
 
-# Exam for EC2
+## Exam for EC2
+
 - When first launch, can't encrypt the root, can setup it later. Additional volume are OK to encrypt when the first time launch
   - can use a third party tool (such as bit locker etc) to encrypt the root volume, or do this when creating AMI's in the AWS console or using the API
 - Default all inbound traffic is blocked
@@ -37,7 +40,8 @@
 - in PVC, network access controll lists is stateless, create a inbound will also need an outbound rule
   - can block an individual port / no deny rules
 
-# EC2 Placement Groups
+## EC2 Placement Groups
+
 - clustered placement group
   - in a single AZ
   - low network latency, high network throughput or both
@@ -54,7 +58,8 @@
 - the name of placement group must be unique in your AWS account
 - AWS recommand homogenous instances within clustered placement groups
 
-# Exam reviews
+## Exam reviews
+
 - Individual instances are provisioned in AZs
 - Can I delete a snapshot of an EBS Volume that is used as the root device of a registered AMI?
   - No
@@ -83,6 +88,6 @@
   - Schedule snapshots of HDD based volumes for periods of low use
   - Ensure that your EC2 instances are types that can be optimized for use with EBS
 - Amazon's EBS volumes are ________.
-    - block based storage (not object)
+  - block based storage (not object)
 - Stop and start a EC2 may cause IP chanage
 - Each EC2 instance has both a public and private IP address
