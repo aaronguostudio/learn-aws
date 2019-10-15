@@ -47,7 +47,7 @@
 ## Encrypted Root Volume
 
 - before, it's not possible encrypt root volumne on creation, now it could
-- if not encrypte when create, can encrypte it after creation
+- if not encrypt when create, can encrypt it after creation
   - create a snapshot for the volume
   - create a copy of the new snapshot and encrpte it
   - create an image of the new copied snapshot

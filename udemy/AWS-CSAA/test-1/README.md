@@ -7,8 +7,8 @@
 
 - S3 client side encryption
   - use S3 client-side encryption with a client-side master key
-    - it encrypte before sending to AWS
-    - reuqires
+    - it encrypt before sending to AWS
+    - requires
       - AWS KMS-managed customer master key
       - a client-side master key
 
@@ -18,7 +18,7 @@
       - AWS Lambda encrypts the ENV in the function by default, but it's using the default key which other user login to the AWS console can still see them
         - I can check enable helpers for encryption in transit
         - need to create my own AWS KMS key and choose it instead of the default key
-        - then I encrypte the ENV variables
+        - then I encrypt the ENV variables
         - there is also code example that I can find in the AWS console
 
 - A traffic monitoring and reporting application uses Kinesis to accept real-time data. In order to process and store the data, they used Amazon Kinesis Data Firehose to load the streaming data to various AWS resources. Which of the following services can you load streaming data into?
