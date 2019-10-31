@@ -25,6 +25,13 @@
 - service httpd start
 - chkconfig on
 
+## Get metadata
+
+```bash
+curl http://169.254.169.254/latest/user-data
+curl http://169.254.169.254/latest/meta-data
+```
+
 ## Exam for EC2
 
 - When first launch, can't encrypt the root, can setup it later. Additional volume are OK to encrypt when the first time launch
